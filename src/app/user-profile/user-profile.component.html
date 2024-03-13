@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+<div class="movie-page">
+    <mat-card class="profile">
+        <mat-card-title class="info">PROFILE</mat-card-title>
+        <mat-card-content>
+            Username: {{user.Username}} <br />
+            Email: {{user.Email}} <br />
+            Birthday: {{user.Birth | date:'longDate'}}<br />
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="back()" color="primary" style="margin: 20px;">
+                Back
+            </button>
+            <button mat-raised-button (click)="updateUser()" color="primary" style="margin: 20px;">
+                Update User
+            </button>
+            <button mat-raised-button color="primary" (click)="deleteUser()" style="margin: 20px;">
+                Delete Account
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <div>
+        <h1>Favorite Movies</h1>
+        <div class="movie-view">
+
+            <div *ngIf="FavoriteMovies.length === 0" style="flex: 1 1 auto;">
+                <p>No favorites.</p>
+            </div>
+
+            <mat-card *ngFor="let movie of FavoriteMovies" class="movie-card">
+
+                <mat-card-header>
+                    <mat-card-title>{{movie.Title}}</mat-card-title>
+                    <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+                </mat-card-header>
+                <img class="movie-image" src={{movie.ImagePath}} alt={{movie.Title}} />
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="getGenre(movie.Genre)">
+                        Genre
+                    </button>
+                    <button mat-button color="primary" (click)="getOneDirector(movie.Director)">
+                        Director
+                    </button>
+                    <button mat-button color="primary" (click)="openMovieDetails(movie.Description)">
+                        Synopsis
+                    </button>
+                    <button mat-icon-button (click)="removeFavoriteMovie(movie._id)"
+                        [ngClass]="isFavoriteMovie(movie._id) ? 'mat-flat-button' : 'mat-icon-button'">
+                        <mat-icon>{{ isFavoriteMovie(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
+                    </button>
+                </mat-card-actions>
+
+            </mat-card>
+        </div>
+    </div>
+</div>
