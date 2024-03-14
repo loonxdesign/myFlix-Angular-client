@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-// Declaring the API url that will provide data for the client app
 const apiUrl = 'https://ghib-lix-e94c670e9f28.herokuapp.com/';
 
 @Injectable({
@@ -20,11 +19,11 @@ export class FetchApiDataService {
   }
 
   // User login
-public userLogin(userData: any): Observable<any> {
-  return this.http.post(apiUrl + 'login', userData).pipe(
-    catchError(this.handleError)
-  );
-}
+  public userLogin(userData: any): Observable<any> {
+    return this.http.post(apiUrl + 'login', userData).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   // Get all movies
   getAllMovies(): Observable<any> {
@@ -78,10 +77,10 @@ public userLogin(userData: any): Observable<any> {
     );
   }
 
-  // Get a user by userId
-  getUser(userId: string): Observable<any> {
+  // Get a user
+  public getUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'users/' + userId, {
+    return this.http.get(apiUrl + 'users', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
@@ -144,7 +143,7 @@ public userLogin(userData: any): Observable<any> {
   }
 
   // Delete a user
-  deleteUser(userId: string): Observable<any> {
+  public deleteUser(userId: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + userId, {
       headers: new HttpHeaders({

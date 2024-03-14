@@ -23,11 +23,11 @@
         <h1>Favorite Movies</h1>
         <div class="movie-view">
 
-            <div *ngIf="FavoriteMovies.length === 0" style="flex: 1 1 auto;">
+            <div *ngIf="favoriteMovies.length === 0" style="flex: 1 1 auto;">
                 <p>No favorites.</p>
             </div>
 
-            <mat-card *ngFor="let movie of FavoriteMovies" class="movie-card">
+            <mat-card *ngFor="let movie of favoriteMovies" class="movie-card">
 
                 <mat-card-header>
                     <mat-card-title>{{movie.Title}}</mat-card-title>

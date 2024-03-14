@@ -7,10 +7,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
-  styleUrls: ['./user-login-form.component.scss']
+  styleUrls: ['./user-login-form.component.scss'],
 })
 export class UserLoginFormComponent implements OnInit {
-
   @Input() userData = { Username: '', Password: '' };
 
   constructor(
@@ -20,29 +19,29 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) {}
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /**
    * Function responsible for sending the form inputs to the backend
    */
   loginUser(): void {
-    this.FetchApiDataService.userLogin(this.userData).subscribe((result) => {
-      // Logic for a successful user login
-      console.log(result);
-      localStorage.setItem('user', JSON.stringify(result.user));
-      localStorage.setItem('token', result.token);
-      this.dialogRef.close(); // This will close the modal on success!
-      console.log(result);
-      this.snackBar.open('user logged in successfully', 'OK', {
-        duration: 2000
-      });
-      this.router.navigate(['movies']);
-    }, (result) => {
-      this.snackBar.open('login failed', 'OK', {
-        duration: 2000
-      });
-    });
-}
+    this.FetchApiDataService.userLogin(this.userData).subscribe(
+      (result) => {
+        console.log(result);
+        localStorage.setItem('user', JSON.stringify(result.user));
+        localStorage.setItem('token', result.token);
+        this.dialogRef.close();
+        this.snackBar.open('User logged in successfully', 'OK', {
+          duration: 2000
+        });
+        this.router.navigate(['movies']);
+      },
+      (error) => {
+        console.log(error);
+        this.snackBar.open('Login failed', 'OK', {
+          duration: 2000
+        });
+      }
+    );
+  }
 }
