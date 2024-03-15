@@ -7,7 +7,16 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrl: './genre.component.scss',
 })
 export class GenreComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { genre: any }) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA)
 
-  ngOnInit(): void {}
+  public genre: {
+    Name: string,
+    Description: string
+  }
+  ) {}
+
+  ngOnInit(): void {
+    
+  }
 }

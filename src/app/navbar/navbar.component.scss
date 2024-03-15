@@ -1,5 +1,5 @@
 .navigation-bar{
-    background-color: rgb(118, 207, 200);;
+    background-color: #9b53ff;;
     display: flex;
     flex-direction: row;
     justify-content:space-between;    
@@ -9,4 +9,8 @@
 h1{
     color: white;
     margin-right: calc(100%/4);
+}
+
+.menus {
+    color: white;
 }

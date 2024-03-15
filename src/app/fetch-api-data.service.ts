@@ -77,15 +77,14 @@ export class FetchApiDataService {
     );
   }
 
-  // Get a user
-  public getUser(): Observable<any> {
+   // Get a user
+   getUser(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users', {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       }),
     }).pipe(
-      map(this.extractResponseData),
       catchError(this.handleError)
     );
   }
@@ -117,7 +116,7 @@ export class FetchApiDataService {
   }
 
   // Delete a movie from a user's list of favorites
-  deleteFavoriteMovie(userId: string, movieId: string): Observable<any> {
+  public deleteFavoriteMovie(userId: string, movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/' + userId + '/movies/' + movieId, {
       headers: new HttpHeaders({
@@ -154,21 +153,19 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-
+ 
   // Error handling
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+      console.error(`Backend returned code ${error.status}, body was: ${error.error}`);
     }
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+    return throwError('Something bad happened; please try again later.');
   }
 
-  // Response extraction
-  private extractResponseData(res: any): any {
-    return res || {};
-  }
+// Response extraction
+private extractResponseData(res: any): any {
+  return res || {};
+}
 }
