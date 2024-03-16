@@ -4,6 +4,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+/**
+ * Component for user login form
+ */
 @Component({
   selector: 'app-user-login-form',
   templateUrl: './user-login-form.component.html',
@@ -19,6 +22,9 @@ export class UserLoginFormComponent implements OnInit {
     private router: Router
   ) {}
 
+  /**
+   * Initializes the component
+   */
   ngOnInit(): void {}
 
   /**

@@ -1,6 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+/**
+ * Component for displaying movie details in a dialog
+ */
 @Component({
   selector: 'app-movie-details',
   templateUrl: './movie-details.component.html',
@@ -9,5 +12,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class MovieDetailsComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: { details: string }) {}
 
+  /**
+   * Initializes the component
+   */
   ngOnInit(): void {}
 }

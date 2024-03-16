@@ -6,6 +6,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 
+/**
+ * Component for user profile management
+ */
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -24,10 +27,16 @@ export class UserProfileComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
+  /**
+   * Initializes the component
+   */
   ngOnInit(): void {
     this.getProfile();
   }
 
+  /**
+   * Fetches user profile data
+   */
   getProfile(): void {
     this.fetchApiData.fetchUserData().subscribe({
       next: (user) => {
@@ -47,12 +56,18 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Fetches favorite movies
+   */
   fetchFavoriteMovies(favoriteMoviesIds: string[]): void {
     this.fetchApiData.getAllMovies().subscribe((response) => {
       this.FavoriteMovies = response.filter((movie: any) => favoriteMoviesIds.includes(movie._id));
     });
   }
 
+  /**
+   * Updates user profile
+   */
   updateUser(): void {
     this.fetchApiData.editUserProfile(this.userData).subscribe((result) => {
       console.log('User update success:', result);
@@ -85,6 +100,9 @@ export class UserProfileComponent implements OnInit {
   }
   
 
+  /**
+   * Deletes a user
+   */
   deleteUser(): void {
     const userId = this.user._id;
     this.router.navigate(['welcome']).then(() => {
@@ -98,6 +116,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog for a director
+   */
   openDirectorDialog(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -110,6 +131,9 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog for a genre
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -120,10 +144,17 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks if a movie is favorited by the user
+   */
   isFav(movie: any): any {
     return this.FavoriteMovies.some((favMovie) => favMovie._id === movie._id);
   }
 
+
+  /**
+   * Deletes a movie from favorites
+   */
   deleteFavMovies(movie: any): void {
     const username = this.userData.Username; // Get the username from userData
     const movieId = movie._id;

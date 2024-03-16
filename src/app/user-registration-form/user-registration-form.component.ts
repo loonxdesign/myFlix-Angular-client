@@ -10,7 +10,9 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
+/**
+ * Component for user registration form
+ */
 @Component({
   selector: 'app-user-registration-form',
   templateUrl: './user-registration-form.component.html',
@@ -26,9 +28,15 @@ export class UserRegistrationFormComponent implements OnInit {
     public snackBar: MatSnackBar
   ) { }
 
+/**
+   * Initializes the component
+   */  
 ngOnInit(): void {
 }
 
+/**
+   * Registers a new user
+   */
 // This is the function responsible for sending the form inputs to the backend
 registerUser(): void {
   this.fetchApiData.userRegistration(this.userData).subscribe((result) => {

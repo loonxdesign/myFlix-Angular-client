@@ -9,6 +9,9 @@ import { MovieDetailsComponent } from '../movie-details/movie-details.component'
 import { GenreComponent } from '../genre/genre.component';
 import { DirectorComponent } from '../director/director.component';
 
+/**
+ * Component for displaying movie cards and handling related operations
+ */
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
@@ -29,18 +32,28 @@ export class MovieCardComponent implements OnInit {
   ) { }
 
 
+  /**
+   * Opens a dialog to display movie details
+   * @param movie The movie object containing details to display
+   */
   openMovieDetails(movie: any): void {
     this.dialog.open(MovieDetailsComponent, {
       data: { details: movie.Description /* Adjust based on your data structure */ },
     });
   }
 
+  /**
+   * Initializes the component by fetching movies and user data
+   */
   ngOnInit(): void {
     this.getMovies();
     this.getFavMovies();
     this.loadUserData();
   }
 
+  /**
+   * Loads user data
+   */
   loadUserData(): void {
     this.fetchApiData.fetchUserData().subscribe({
       next: (userData) => {
@@ -58,6 +71,9 @@ export class MovieCardComponent implements OnInit {
   }
   
 
+  /**
+   * Fetches all movies from the API
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -65,6 +81,13 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog to display director details
+   * @param name The name of the director
+   * @param bio The bio of the director
+   * @param birth The birth date of the director
+   * @param death The death date of the director
+   */
   openDirectorDialog(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorComponent, {
       data: {
@@ -77,6 +100,11 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Opens a dialog to display genre details
+   * @param name The name of the genre
+   * @param description The description of the genre
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreComponent, {
       data: {
@@ -86,7 +114,10 @@ export class MovieCardComponent implements OnInit {
       width: '450px',
     });
   }
-  
+ 
+  /**
+   * Fetches user's favorite movies
+   */
   getFavMovies(): void {
     this.fetchApiData.fetchUserData().subscribe({
       next: (user: any) => {
@@ -104,11 +135,21 @@ export class MovieCardComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Checks if a movie is favorited by the user
+   * @param movie The movie object to check
+   * @returns Boolean indicating whether the movie is favorited
+   */
   isFav(movie: any): boolean {
     console.log(this.FavoriteMovies.includes(movie._id));
     return this.FavoriteMovies.includes(movie._id);
   }
   
+  /**
+   * Toggles the favorite status of a movie
+   * @param movie The movie object to toggle
+   */
   toggleFav(movie: any): void {
     if (!movie) {
       console.error('Invalid movie data.');
@@ -121,6 +162,10 @@ export class MovieCardComponent implements OnInit {
       : this.addFavMovies(movie);
   }
 
+  /**
+   * Adds a movie to user's favorites
+   * @param movie The movie object to add
+   */
   addFavMovies(movie: any): void {
     if (!this.userData || !this.userData.Username) {
       console.error('User data is not loaded. Cannot add to favorites.');
@@ -146,6 +191,10 @@ export class MovieCardComponent implements OnInit {
     });
   }
   
+  /**
+   * Deletes a movie from user's favorites
+   * @param movie The movie object to delete
+   */
   deleteFavMovies(movie: any): void {
     if (!this.userData || !this.userData.Username) {
       console.error('User data is not loaded. Cannot delete from favorites.');
