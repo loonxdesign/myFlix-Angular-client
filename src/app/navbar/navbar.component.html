@@ -1,11 +1,8 @@
 <div class="navigation-bar">
-    <h1>Ghib-lix App</h1>
-    <button class="menus" mat-button [matMenuTriggerFor]="menu" >
-        Menu
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openMovies()">Home</button>
-      <button mat-menu-item (click)="openProfile()"> Profile</button>
-      <button mat-menu-item (click)="logoutUser()">Logout</button>
-    </mat-menu>
+  <h1>Ghib-lix App</h1>
+  <div class="button-group">
+    <button mat-button (click)="openMovies()">Home</button>
+    <button mat-button (click)="openProfile()">Profile</button>
+    <button mat-button (click)="logoutUser()">Logout</button>
+  </div>
 </div>

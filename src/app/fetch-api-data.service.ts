@@ -11,6 +11,27 @@ const apiUrl = 'https://ghib-lix-e94c670e9f28.herokuapp.com/';
 export class FetchApiDataService {
   constructor(private http: HttpClient) {}
 
+  // Fetch user data
+  public fetchUserData(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const userDataString = localStorage.getItem('user');
+    
+    if (userDataString && token) {
+      const userData = JSON.parse(userDataString);
+      
+      return this.http.get(apiUrl + 'users/' + userData.Username, {
+        headers: new HttpHeaders({
+          Authorization: 'Bearer ' + token,
+        }),
+      }).pipe(
+        catchError(this.handleError)
+      );
+    } else {
+      // Return an Observable that emits an error if user data or token isn't available
+      return throwError(() => new Error('Username or authentication token not available'));
+    }
+  }
+
   // User registration
   public userRegistration(userDetails: any): Observable<any> {
     return this.http.post(apiUrl + 'users', userDetails).pipe(

@@ -1,16 +1,42 @@
-.navigation-bar{
-    background-color: #9b53ff;;
+.navigation-bar {
+    background-color: #9b53ff;
     display: flex;
-    flex-direction: row;
-    justify-content:space-between;    
-    padding: 15px;
-}
-
-h1{
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  h1 {
     color: white;
-    margin-right: calc(100%/4);
-}
-
-.menus {
+    margin: 0;
+    font-size: 1.8em;
+  }
+  
+  .button-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  button.mdc-button.mat-mdc-button {
     color: white;
-}
+    margin: 0 10px;
+    font-weight: bold;
+ }
+
+  
+  .navigation-bar button.mat-button:hover {
+    background-color: #a674ff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  
+  /* If using Angular Material, you may want to override some styles specifically for buttons */
+  .mat-button-ripple.mat-ripple {
+    color: #a674ff; /* Ripple effect color to match hover */
+  }
+  
+  .mat-button-focus-overlay {
+    background-color: transparent; /* Remove focus overlay to keep custom styles */
+  }
+  

@@ -5,13 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss',
+  styleUrls: ['./navbar.component.scss'], // Corrected here
 })
 export class NavbarComponent implements OnInit {
   constructor(
     public router: Router,
     public snackBar: MatSnackBar
-    ) {}
+  ) {}
 
   ngOnInit(): void {
   }
@@ -30,6 +30,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['welcome']);
     this.snackBar.open('User logout successful', 'OK', {
       duration: 2000
-    })
+    });
   }
 }
