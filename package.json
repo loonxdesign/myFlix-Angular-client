@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:myFlix-Angular-client": "node dist/my-flix-angular-client/server/server.mjs",
-    "homepage": "https://[github-username].github.io/[github-repository-name]",
+    "homepage": "https://loonxdesign.github.io/myFlix-Angular-client",
     "publish": "gh-pages -d src"
   },
   "private": true,
