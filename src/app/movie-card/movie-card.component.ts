@@ -88,12 +88,14 @@ export class MovieCardComponent implements OnInit {
   }
   
   getFavMovies(): void {
-    this.fetchApiData.getUser().subscribe({
+    this.fetchApiData.fetchUserData().subscribe({
       next: (user: any) => {
         this.userData = user;
         // Check if user.FavoriteMovies exists and is an array; if not, default to an empty array
         this.FavoriteMovies = Array.isArray(user.FavoriteMovies) ? user.FavoriteMovies : [];
         console.log('Fav Movies in getFavMovies', this.FavoriteMovies);
+        // Call toggleFav() here to update the state of favorite movies
+        //this.toggleFav(null); // Pass null or any placeholder since we don't need to use movie data here
       },
       error: (error) => {
         console.error('Error fetching user data:', error);
@@ -102,19 +104,21 @@ export class MovieCardComponent implements OnInit {
       }
     });
   }
-  
-
   isFav(movie: any): boolean {
-    return this.FavoriteMovies ? this.FavoriteMovies.includes(movie._id) : false;
+    console.log(this.FavoriteMovies.includes(movie._id));
+    return this.FavoriteMovies.includes(movie._id);
   }
   
   toggleFav(movie: any): void {
+    if (!movie) {
+      console.error('Invalid movie data.');
+      return;
+    }
+  
     const isFavorite = this.isFav(movie);
     isFavorite
       ? this.deleteFavMovies(movie)
       : this.addFavMovies(movie);
-    
-
   }
 
   addFavMovies(movie: any): void {

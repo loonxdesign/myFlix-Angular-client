@@ -6,16 +6,17 @@
     </div>
     <mat-card-header class="card-header">
       <mat-card-title class="card-title">{{movie.Title}} ({{movie.Year}})</mat-card-title>
-      <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
+      <mat-card-subtitle class="card-text">Directed by: {{movie.Director.Name}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions class="actions">
-      <button mat-button color="primary" (click)="openGenreDialog(movie.Genres.Name, movie.Genres.Description)">
+      <button id="customize-button" mat-button color="primary" (click)="openGenreDialog(movie.Genres.Name, movie.Genres.Description)">
         Genre
       </button>
-      <button mat-button color="primary" (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birth, movie.Director.Death)">
+      <button id="customize-button" mat-button color="primary" (click)="openDirectorDialog(movie.Director.Name, movie.Director.Bio, movie.Director.Birth, movie.Director.Death)">
         Director
       </button>
-      <button mat-icon-button color="primary" (click)="toggleFav(movie)">
+       <!-- Favorite Button -->
+       <button id="customize-button" mat-icon-button color="primary" (click)="toggleFav(movie)">
         <mat-icon *ngIf="!isFav(movie)">favorite_border</mat-icon>
         <mat-icon *ngIf="isFav(movie)">favorite</mat-icon>
       </button>
