@@ -2,6 +2,24 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
+## Project description
+
+Using Angular, build the client-side for an app called Ghib-lix based on its existing server-side code (REST API and database)
+
+## API used
+
+https://ghib-lix-e94c670e9f28.herokuapp.com
+
+## Project dependencies
+
+• Angular: Web application framework for building single-page client applications.
+
+• Angular Material: UI component library for Angular, implementing Google's Material Design.
+
+• TypeDoc: Generates HTML API documentation from TypeScript code.
+
+## Result
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
